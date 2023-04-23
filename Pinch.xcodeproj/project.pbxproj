@@ -11,6 +11,11 @@
 		033A206F29F3E2C700E63FCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A206E29F3E2C700E63FCB /* ContentView.swift */; };
 		033A207129F3E2D400E63FCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033A207029F3E2D400E63FCB /* Assets.xcassets */; };
 		033A207429F3E2D400E63FCB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033A207329F3E2D400E63FCB /* Preview Assets.xcassets */; };
+		036B902529F3F23C002B9519 /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B902429F3F23C002B9519 /* InfoPanelView.swift */; };
+		036B902729F3FD9B002B9519 /* ControlImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B902629F3FD9B002B9519 /* ControlImageView.swift */; };
+		036B902929F41669002B9519 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B902829F41669002B9519 /* CounterView.swift */; };
+		036B902B29F47F04002B9519 /* PagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B902A29F47F04002B9519 /* PagesModel.swift */; };
+		036B902D29F47F81002B9519 /* PagesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B902C29F47F81002B9519 /* PagesData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		033A206E29F3E2C700E63FCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		033A207029F3E2D400E63FCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		033A207329F3E2D400E63FCB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		036B902429F3F23C002B9519 /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
+		036B902629F3FD9B002B9519 /* ControlImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlImageView.swift; sourceTree = "<group>"; };
+		036B902829F41669002B9519 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		036B902A29F47F04002B9519 /* PagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesModel.swift; sourceTree = "<group>"; };
+		036B902C29F47F81002B9519 /* PagesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				033A206E29F3E2C700E63FCB /* ContentView.swift */,
+				036B902829F41669002B9519 /* CounterView.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -81,6 +92,8 @@
 		03ECA2B029F3E5C7003D4F75 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				036B902429F3F23C002B9519 /* InfoPanelView.swift */,
+				036B902629F3FD9B002B9519 /* ControlImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -88,6 +101,7 @@
 		03ECA2B129F3E5D7003D4F75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				036B902A29F47F04002B9519 /* PagesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +109,7 @@
 		03ECA2B229F3E5DB003D4F75 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				036B902C29F47F81002B9519 /* PagesData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -169,8 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036B902729F3FD9B002B9519 /* ControlImageView.swift in Sources */,
 				033A206F29F3E2C700E63FCB /* ContentView.swift in Sources */,
 				033A206D29F3E2C700E63FCB /* PinchApp.swift in Sources */,
+				036B902529F3F23C002B9519 /* InfoPanelView.swift in Sources */,
+				036B902B29F47F04002B9519 /* PagesModel.swift in Sources */,
+				036B902929F41669002B9519 /* CounterView.swift in Sources */,
+				036B902D29F47F81002B9519 /* PagesData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
