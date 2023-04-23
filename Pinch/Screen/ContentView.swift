@@ -11,6 +11,9 @@ struct ContentView: View {
     @State private var isAnimating: Bool = false
     @State private var imageScaling: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
+    @State private var isDrawerOpen: Bool = false 
+    let pages: [Page] = pagesdata
+    @State private var pageIndex: Int = 1
     
     func resetImageState() {
         return withAnimation(.spring()) {
@@ -19,10 +22,15 @@ struct ContentView: View {
         }
     }
     
+    func currentPage() -> String {
+        return pages[pageIndex - 1].imageName
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
-                Image("magazine-front-cover")
+                Color.clear
+                Image(currentPage())
                     .resizable()
 //                    .scaledToFit()
                     .aspectRatio(contentMode: .fit)
@@ -43,15 +51,32 @@ struct ContentView: View {
                     })
                     .gesture(DragGesture()
                         .onChanged { value in
-//                            withAnimation(.linear(duration: 1)) {
+                            withAnimation(.linear(duration: 1)) {
                                 imageOffset = value.translation
-//                            }
+                            }
                         }
                         .onEnded {_ in
                             if imageScaling <= 1 {
                                 resetImageState()
                             }
-                        })
+                        }
+                    )
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged {
+                                value in
+//                                withAnimation(.linear(duration: 1)) {
+                                    if imageScaling >= 1 && imageScaling <= 5 {
+                                        imageScaling = value
+                                    } else if imageScaling > 5 {
+                                        imageScaling = 5
+                                    } else if imageScaling < 1 {
+                                        imageScaling = 1
+                                    }
+                                
+//                                }
+                            }
+                    )
             }
             .navigationTitle("Pinch & Zool")
             .foregroundColor(.black)
@@ -61,6 +86,88 @@ struct ContentView: View {
                     isAnimating = true
                 }
             })
+            .overlay(
+                InfoPanelView(scale: imageScaling, offset: imageOffset)
+            .padding(.horizontal)
+            .padding(.top, 30)
+                , alignment: .top)
+            .overlay(
+                Group {
+                    HStack {
+                        Button {
+                            withAnimation(.spring()) {
+                                if imageScaling > 1 {
+                                    imageScaling -= 1
+                                    
+                                    if imageScaling <= 1 {
+                                        resetImageState()
+                                    }
+                                }
+                            }
+                        } label: {
+                            ControlImageView(icon: "minus.magnifyingglass")
+                        }
+                        Button {
+                            resetImageState()
+                        } label: {
+                            ControlImageView(icon: "arrow.up.left.and.down.right.magnifyingglass")
+                        }
+                        Button {
+                            withAnimation(.spring()) {
+                                if imageScaling < 5 {
+                                    imageScaling += 1
+                                    
+                                    if imageScaling > 5 {
+                                        imageScaling = 5
+                                    }
+                                }
+                            }
+                        } label: {
+                            ControlImageView(icon: "plus.magnifyingglass")
+                        }
+                    }
+                    .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+                    .opacity(isAnimating ? 1 : 0)
+                }
+                    .padding(.bottom, 30), alignment: .bottom
+            )
+            .overlay(
+                HStack(spacing: 12) {
+                    Image(systemName: isDrawerOpen ? "chevron.compact.right" : "chevron.compact.left")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 40)
+                        .padding(8)
+                        .foregroundStyle(.secondary)
+                        .onTapGesture {
+                            withAnimation(.easeOut) {
+                                isDrawerOpen.toggle()
+                            }
+                        }
+                    ForEach(pages) { page in
+                        Image(page.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .cornerRadius(8)
+                            .shadow(radius: 4)
+                            .onTapGesture {
+                                pageIndex = page.id
+                            }
+                    }
+                    Spacer()
+                }
+                    .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+                    .opacity(isAnimating ? 1 : 0)
+                    .frame(width: 260)
+                    .padding(.top, UIScreen.main.bounds.height / 12)
+                    .offset(x: isDrawerOpen ? 20 : 215)
+                , alignment: .topTrailing
+            )
         }
         .navigationViewStyle(.stack)
     }
